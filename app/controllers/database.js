@@ -10,62 +10,44 @@ var mysql = require('mysql');
 // });
 
 //=== ClearDB database connection
-// var connection = mysql.createConnection({
-//     host: 'us-cdbr-iron-east-04.cleardb.net',
-//     user: 'b036ac2e55f447',
-//     database: 'heroku_85481808730d415',
-//     password: 'd0817784'
-// });
+var db_config = {
+    host: 'us-cdbr-iron-east-04.cleardb.net',
+    user: 'b036ac2e55f447',
+    database: 'heroku_85481808730d415',
+    password: 'd0817784'
+};
 
-// Wrapper function fir Connection to handle connection timeout
-var getConnection = function() {
-    // Test connection health before returning it to caller.
-    if ((connection) && (connection._socket)
-            && (connection._socket.readable)
-            && (connection._socket.writable)) {
-        return connection;
+var connection;
+
+// Wrapper function for Connection to handle connection timeout
+function handleDisconnect() {
+  connection = mysql.createConnection(db_config); // Recreate the connection, since
+                                                  // the old one cannot be reused.
+
+  connection.connect(function(err) {              // The server is either down
+    if (err) {                                     // or restarting (takes a while sometimes).
+      console.log('error when connecting to db:', err);
+      setTimeout(handleDisconnect, 2000);            // We introduce a delay before attempting to reconnect,
+    } else {
+      connection.query({sql: 'select count(*) from Movie', timeout: 40000}, function (err, result) {
+        console.log(result);
+      });
     }
-    console.log(((connection) ?
-            "UNHEALTHY SQL CONNECTION; RE" : "") + "CONNECTING TO SQL.");
-    // var connection = mysql.createConnection({
-    //     host     : CONFIG.db.host,
-    //     user     : CONFIG.db.user,
-    //     password : CONFIG.db.password,
-    //     database : CONFIG.db.database,
-    //     port     : CONFIG.db.port
-    // });
-    var connection = mysql.createConnection({
-        host: 'us-cdbr-iron-east-04.cleardb.net',
-        user: 'b036ac2e55f447',
-        database: 'heroku_85481808730d415',
-        password: 'd0817784'
-    });
-
-    connection.connect(function(err) {
-        if (err) {
-            console.log("SQL CONNECT ERROR: " + err);
-        } else {
-            console.log("SQL CONNECT SUCCESSFUL.");
-        }
-    });
-
-    connection.on("close", function (err) {
-        console.log("SQL CONNECTION CLOSED.");
-    });
-    connection.on("error", function (err) {
-        console.log("SQL CONNECTION ERROR: " + err);
-
-        // Rec-connect
-        if (err.code === 'PROTOCOL_CONNECTION_LOST') { 
-            console.log("SQL RE-CONNECTING.... ");
-            //getConnection();
-        }
-    });
-
-    return connection;
+                                                     // to avoid a hot loop, and to allow our node script to
+  });                                                // process asynchronous requests in the meantime.
+                                                     // If you're also serving http, display a 503 error.
+  connection.on('error', function(err) {
+    console.log('db error', err);
+    if (err.code === 'PROTOCOL_CONNECTION_LOST') { // Connection to the MySQL server is usually
+      handleDisconnect();                         // lost due to either server restart, or a
+    } else {                                      // connnection idle timeout (the wait_timeout
+      throw err;                                  // server variable configures this)
+    }
+  });
 }
 
-var connection = getConnection();
+// Start DB connection
+handleDisconnect();
 
 // Connect database
 // connection.connect(function (err) {
