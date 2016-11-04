@@ -1,6 +1,6 @@
 {
   "name": "move4you",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Movie Project",
   "main": "server.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "REST",
     "SQL"
   ],
-  "author": "nay",
+  "author": "TIVA",
   "license": "MIT",
 
   "dependencies": {
