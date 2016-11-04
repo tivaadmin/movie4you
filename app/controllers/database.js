@@ -58,20 +58,7 @@ var getConnection = function() {
         // Rec-connect
         if (err.code === 'PROTOCOL_CONNECTION_LOST') { 
             console.log("SQL RE-CONNECTING.... ");
-            
-            var connection = mysql.createConnection({
-                host: 'us-cdbr-iron-east-04.cleardb.net',
-                user: 'b036ac2e55f447',
-                database: 'heroku_85481808730d415',
-                password: 'd0817784'
-            });
-            connection.connect(function(err) {
-                if (err) {
-                    console.log("RE-CONNECT ERROR: " + err);
-                } else {
-                    console.log("RE-CONNECT SUCCESSFUL.");
-                }
-            });
+            getConnection();
         }
     });
 
