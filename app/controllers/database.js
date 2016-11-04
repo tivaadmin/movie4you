@@ -53,6 +53,7 @@ var getConnection = function() {
     });
     connection.on("error", function (err) {
         console.log("SQL CONNECTION ERROR: " + err);
+        console.log("SQL RE-CONNECTING.... ");
         connection = mysql.createConnection({
             host: 'us-cdbr-iron-east-04.cleardb.net',
             user: 'b036ac2e55f447',
