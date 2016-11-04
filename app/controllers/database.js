@@ -9,13 +9,56 @@ var mysql = require('mysql');
 //     password: 'tiva101'
 // });
 
-//=== Clear database connection
-var connection = mysql.createConnection({
-    host: 'us-cdbr-iron-east-04.cleardb.net',
-    user: 'b036ac2e55f447',
-    database: 'heroku_85481808730d415',
-    password: 'd0817784'
-});
+//=== ClearDB database connection
+// var connection = mysql.createConnection({
+//     host: 'us-cdbr-iron-east-04.cleardb.net',
+//     user: 'b036ac2e55f447',
+//     database: 'heroku_85481808730d415',
+//     password: 'd0817784'
+// });
+
+// Wrapper function fir Connection to handle connection timeout
+var getConnection = function() {
+    // Test connection health before returning it to caller.
+    if ((module.exports.connection) && (module.exports.connection._socket)
+            && (module.exports.connection._socket.readable)
+            && (module.exports.connection._socket.writable)) {
+        return module.exports.connection;
+    }
+    console.log(((module.exports.connection) ?
+            "UNHEALTHY SQL CONNECTION; RE" : "") + "CONNECTING TO SQL.");
+    // var connection = mysql.createConnection({
+    //     host     : CONFIG.db.host,
+    //     user     : CONFIG.db.user,
+    //     password : CONFIG.db.password,
+    //     database : CONFIG.db.database,
+    //     port     : CONFIG.db.port
+    // });
+    var connection = mysql.createConnection({
+        host: 'us-cdbr-iron-east-04.cleardb.net',
+        user: 'b036ac2e55f447',
+        database: 'heroku_85481808730d415',
+        password: 'd0817784'
+    });
+
+    connection.connect(function(err) {
+        if (err) {
+            console.log("SQL CONNECT ERROR: " + err);
+        } else {
+            console.log("SQL CONNECT SUCCESSFUL.");
+        }
+    });
+    connection.on("close", function (err) {
+        console.log("SQL CONNECTION CLOSED.");
+    });
+    connection.on("error", function (err) {
+        console.log("SQL CONNECTION ERROR: " + err);
+    });
+    module.exports.connection = connection;
+    return module.exports.connection;
+}
+
+var connection = database.getConnection();
 
 // Connect database
 connection.connect(function (err) {
