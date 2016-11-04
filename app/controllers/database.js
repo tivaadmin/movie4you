@@ -48,17 +48,21 @@ var getConnection = function() {
             console.log("SQL CONNECT SUCCESSFUL.");
         }
     });
+
     connection.on("close", function (err) {
         console.log("SQL CONNECTION CLOSED.");
     });
     connection.on("error", function (err) {
         console.log("SQL CONNECTION ERROR: " + err);
+
+        // Rec-connect
         console.log("SQL RE-CONNECTING.... ");
-        connection = mysql.createConnection({
-            host: 'us-cdbr-iron-east-04.cleardb.net',
-            user: 'b036ac2e55f447',
-            database: 'heroku_85481808730d415',
-            password: 'd0817784'
+        connection.connect(function(err) {
+            if (err) {
+                console.log("SQL RE-CONNECT ERROR: " + err);
+            } else {
+                console.log("SQL RE-CONNECT SUCCESSFUL.");
+            }
         });
     });
 
