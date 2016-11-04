@@ -58,26 +58,26 @@ var getConnection = function() {
     return module.exports.connection;
 }
 
-var connection = database.getConnection();
+var connection = getConnection();
 
 // Connect database
-connection.connect(function (err) {
-    if (err) {
-        console.error('*** Error connecting: ' + err.stack);
-    } else {
-        console.log('Connected as ID: ' + connection.threadId);
-        connection.query({sql: 'select count(*) from Movie', timeout: 40000}, function (err, result) {
+// connection.connect(function (err) {
+//     if (err) {
+//         console.error('*** Error connecting: ' + err.stack);
+//     } else {
+//         console.log('Connected as ID: ' + connection.threadId);
+//         connection.query({sql: 'select count(*) from Movie', timeout: 40000}, function (err, result) {
 
-            // console.log(req.body);
-            if (err) {
-                console.log(err);
-            }
-            else {
-                console.log(result);
-            }
-        });
-    }
-});
+//             // console.log(req.body);
+//             if (err) {
+//                 console.log(err);
+//             }
+//             else {
+//                 console.log(result);
+//             }
+//         });
+//     }
+// });
 
 // insert user
 exports.add_user = function (req, res) {
