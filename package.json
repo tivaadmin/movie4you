@@ -1,6 +1,6 @@
 {
   "name": "move4you",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Movie Project",
   "main": "server.js",
   "scripts": {
