@@ -1,0 +1,31 @@
+.virtualRepeatdemoHorizontalUsage #horizontal-container {
+  height: 24vh;
+  /*height: 100%;*/
+  width: 100%;
+  max-width: 100%;
+  min-height: 360px; }
+
+.virtualRepeatdemoHorizontalUsage .repeated-item {
+  border-right: 1px solid #ddd;
+  box-sizing: border-box;
+  display: inline-block;
+  /*height: 400px;*/
+  /*height: 30vh;*/
+  padding-top: 4px;
+  text-align: center;
+  max-width: 230px;
+  /*width: 187px; */
+  width: 25%;
+  }
+
+.virtualRepeatdemoHorizontalUsage md-content {
+  margin: 16px; }
+
+.virtualRepeatdemoHorizontalUsage md-virtual-repeat-container {
+  border: solid 1px grey; }
+
+
+/*
+Copyright 2016 Google Inc. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that can be foundin the LICENSE file at http://material.angularjs.org/HEAD/license.
+*/

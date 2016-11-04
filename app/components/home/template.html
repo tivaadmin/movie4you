@@ -1,0 +1,112 @@
+<div>
+	<md-toolbar class="md-primary">
+		<md-button ng-click="toggleLeft()" class="md-raised">
+			Toggle Sidenav
+		</md-button>
+		<div class="md-toolbar-tools">
+			<h2 class="md-flex">M4U</h2>
+		</div>
+	</md-toolbar>
+</div>
+
+<div layout="column" style="width: 100%;" ng-cloak="">
+
+	<section layout="row" flex="">
+
+		<md-sidenav class="md-sidenav-left" md-component-id="left" md-disable-backdrop="" md-whiteframe="4">
+
+			<md-toolbar class="md-theme-indigo">
+				<h1 class="md-toolbar-tools">Name</h1>
+				<md-button ng-click="toggleLeft()">
+					Close this Sidenav
+				</md-button>
+			</md-toolbar>
+
+			<md-content layout-margin="">
+				<p>
+					This sidenav is not showing any backdrop, where users can click on it, to close the sidenav.
+				</p>
+
+			</md-content>
+
+		</md-sidenav>
+	</section>
+
+	<div flex>
+		<div ng-cloak="" class="virtualRepeatdemoHorizontalUsage">
+			<md-content layout="column">
+				<div layout="row">
+					<div flex="20">
+						<h4> Popular movies </h4>
+					</div>
+					<div flex="70">
+
+					</div>
+					<div flex hide-sm hide-xs>
+						<h4><a href="#">See All</a></h4>
+					</div>
+				</div>
+				<div flex>
+					<md-virtual-repeat-container id="horizontal-container" md-orient-horizontal="">
+						<div md-virtual-repeat="movie in movies" class="repeated-item" flex="">
+							<img src="{{movie.poster_path}}" ng-click="detail(movie)" class="img-responsive">
+						</div>
+					</md-virtual-repeat-container>
+				</div>
+			</md-content>
+		</div>
+	</div>
+
+	<!--<div flex>
+		<div ng-cloak="" class="virtualRepeatdemoHorizontalUsage">
+			<md-content layout="column">
+				<div layout="row">
+					<div flex="20">
+						<h4> Popular Movies </h4>
+					</div>
+					<div flex="70">
+
+					</div>
+					<div flex hide-sm hide-xs>
+						<h4><a href="#">See All</a></h4>
+					</div>
+				</div>
+				<md-virtual-repeat-container id="horizontal-container" md-orient-horizontal="">
+					<div md-virtual-repeat="movie in movies" class="repeated-item" flex="">
+						<img src="{{movie.poster_path}}" class="img-responsive">
+					</div>
+				</md-virtual-repeat-container>
+			</md-content>
+		</div>
+	</div>
+
+	<div flex>
+		<div ng-cloak="" class="virtualRepeatdemoHorizontalUsage">
+			<md-content layout="column">
+				<div layout="row">
+					<div flex="20">
+						<h4> M4U Selections </h4>
+					</div>
+					<div flex="70">
+
+					</div>
+					<div flex hide-sm hide-xs>
+						<h4><a href="#">See All</a></h4>
+					</div>
+				</div>
+				<md-virtual-repeat-container id="horizontal-container" md-orient-horizontal="">
+					<div md-virtual-repeat="movie in movies" class="repeated-item" flex="">
+						<img src="{{movie.poster_path}}" class="img-responsive">
+					</div>
+				</md-virtual-repeat-container>
+			</md-content>
+		</div>
+	</div>
+
+</div>-->
+
+
+<!--
+Copyright 2016 Google Inc. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that can be foundin the LICENSE file at http://material.angularjs.org/HEAD/license.
+-->

@@ -1,0 +1,75 @@
+<div>
+	<md-toolbar class="md-primary">
+		<md-button ng-click="toggleLeft()" class="md-raised">
+			Toggle Sidenav
+		</md-button>
+		<div class="md-toolbar-tools">
+			<h2 class="md-flex"><span class="glyphicon glyphicon-menu-left" ng-click="home()"></span>M4U</h2>
+		</div>
+	</md-toolbar>
+</div>
+
+<div layout="column" style="width: 100%;" ng-cloak="">
+
+	<section layout="row" flex="">
+
+		<md-sidenav class="md-sidenav-left" md-component-id="left" md-disable-backdrop="" md-whiteframe="4">
+
+			<md-toolbar class="md-theme-indigo">
+				<h1 class="md-toolbar-tools">Name</h1>
+				<md-button ng-click="toggleLeft()">
+					Close this Sidenav
+				</md-button>
+			</md-toolbar>
+
+			<md-content layout-margin="">
+				<p>
+					This sidenav is not showing any backdrop, where users can click on it, to close the sidenav.
+				</p>
+
+			</md-content>
+
+		</md-sidenav>
+	</section>
+
+	<section class="panel">
+		<div class="panel-body">
+			<div class="col-sm-12 col-xs-12 col-md-6">
+				<img src="{{movie.poster_path}}" class="img-responsive" width="100%">
+			</div>
+			<div class="col-sm-12 col-xs-12 col-md-6">
+				<div class="row">
+					<h3>{{ movie.title }}</h3>
+					<table border="0">
+						<tr>
+							<td ng-repeat="g in genre"><i><b>{{g.genreName}},</b></i></td>
+						</tr>
+					</table>
+					<h4>{{ movie.vote_average }}<span class="glyphicon glyphicon-star"></span>{{ movie.release_date | date : "yyyy"}}<span class="glyphicon glyphicon-calendar"></span></h4>
+					<p>{{ movie.overview}}</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<div flex>
+		<div ng-cloak="" class="virtualRepeatdemoHorizontalUsage">
+			<md-content layout="column">
+				<div layout="row">
+					<div flex="20">
+						<h4> Similar movies </h4>
+					</div>
+					<div flex="70">
+
+					</div>
+				</div>
+				<div flex>
+					<md-virtual-repeat-container id="horizontal-container" md-orient-horizontal="">
+						<div md-virtual-repeat="movie in similar" class="repeated-item" flex="">
+							<img src="{{movie.poster_path}}" ng-click="refreshDetail(movie)" class="img-responsive">
+						</div>
+					</md-virtual-repeat-container>
+				</div>
+			</md-content>
+		</div>
+	</div>
