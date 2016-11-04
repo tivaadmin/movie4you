@@ -25,7 +25,7 @@ var getConnection = function() {
             && (connection._socket.writable)) {
         return connection;
     }
-    console.log(((module.exports.connection) ?
+    console.log(((connection) ?
             "UNHEALTHY SQL CONNECTION; RE" : "") + "CONNECTING TO SQL.");
     // var connection = mysql.createConnection({
     //     host     : CONFIG.db.host,
@@ -53,8 +53,14 @@ var getConnection = function() {
     });
     connection.on("error", function (err) {
         console.log("SQL CONNECTION ERROR: " + err);
+        connection = mysql.createConnection({
+            host: 'us-cdbr-iron-east-04.cleardb.net',
+            user: 'b036ac2e55f447',
+            database: 'heroku_85481808730d415',
+            password: 'd0817784'
+        });
     });
-    
+
     return connection;
 }
 
