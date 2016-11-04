@@ -58,7 +58,7 @@ var getConnection = function() {
         // Rec-connect
         if (err.code === 'PROTOCOL_CONNECTION_LOST') { 
             console.log("SQL RE-CONNECTING.... ");
-            getConnection();
+            //getConnection();
         }
     });
 
