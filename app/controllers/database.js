@@ -56,14 +56,16 @@ var getConnection = function() {
         console.log("SQL CONNECTION ERROR: " + err);
 
         // Rec-connect
-        console.log("SQL RE-CONNECTING.... ");
-        connection.connect(function(err) {
-            if (err) {
-                console.log("SQL RE-CONNECT ERROR: " + err);
-            } else {
-                console.log("SQL RE-CONNECT SUCCESSFUL.");
-            }
-        });
+        if (err.code === 'PROTOCOL_CONNECTION_LOST') { 
+            console.log("SQL RE-CONNECTING.... ");
+            connection.connect(function(err) {
+                if (err) {
+                    console.log("SQL RE-CONNECT ERROR: " + err);
+                } else {
+                    console.log("SQL RE-CONNECT SUCCESSFUL.");
+                }
+            });
+        }
     });
 
     return connection;
