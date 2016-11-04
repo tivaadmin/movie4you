@@ -58,8 +58,7 @@ var getConnection = function() {
         // Rec-connect
         if (err.code === 'PROTOCOL_CONNECTION_LOST') { 
             console.log("SQL RE-CONNECTING.... ");
-            connection.end();
-
+            
             var connection = mysql.createConnection({
                 host: 'us-cdbr-iron-east-04.cleardb.net',
                 user: 'b036ac2e55f447',
