@@ -20,10 +20,10 @@ var mysql = require('mysql');
 // Wrapper function fir Connection to handle connection timeout
 var getConnection = function() {
     // Test connection health before returning it to caller.
-    if ((module.exports.connection) && (module.exports.connection._socket)
-            && (module.exports.connection._socket.readable)
-            && (module.exports.connection._socket.writable)) {
-        return module.exports.connection;
+    if ((connection) && (connection._socket)
+            && (connection._socket.readable)
+            && (connection._socket.writable)) {
+        return connection;
     }
     console.log(((module.exports.connection) ?
             "UNHEALTHY SQL CONNECTION; RE" : "") + "CONNECTING TO SQL.");
@@ -54,8 +54,8 @@ var getConnection = function() {
     connection.on("error", function (err) {
         console.log("SQL CONNECTION ERROR: " + err);
     });
-    module.exports.connection = connection;
-    return module.exports.connection;
+    
+    return connection;
 }
 
 var connection = getConnection();
