@@ -23,7 +23,7 @@ connection.connect(function (err) {
         console.error('*** Error connecting: ' + err.stack);
     } else {
         console.log('Connected as ID: ' + connection.threadId);
-        connection.query('select count(*) from Movie', function (err, result) {
+        connection.query({sql: 'select count(*) from Movie', timeout: 40000}, function (err, result) {
 
             // console.log(req.body);
             if (err) {
@@ -48,7 +48,7 @@ exports.add_user = function (req, res) {
 // select popular
 exports.get_popular = function (req, res) {
 
-    var query = connection.query('select distinct m.* from Movie m join Movie_Genre g on m.movieId = g.movieId join Register r on r.genreId = g.genreId where r.userId = 1 order by vote_average DESC,release_date DESC limit 0,10'
+    var query = connection.query({sql: 'select distinct m.* from Movie m join Movie_Genre g on m.movieId = g.movieId join Register r on r.genreId = g.genreId where r.userId = 1 order by vote_average DESC,release_date DESC limit 0,10', timeout: 40000}
         , function (err, result) {
 
             // console.log(req.body);
