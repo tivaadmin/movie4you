@@ -60,9 +60,9 @@ var getConnection = function() {
             console.log("SQL RE-CONNECTING.... ");
             connection.connect(function(err) {
                 if (err) {
-                    console.log("SQL RE-CONNECT ERROR: " + err);
+                    console.log("RE-CONNECT ERROR: " + err);
                 } else {
-                    console.log("SQL RE-CONNECT SUCCESSFUL.");
+                    console.log("RE-CONNECT SUCCESSFUL.");
                 }
             });
         }
