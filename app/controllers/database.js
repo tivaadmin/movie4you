@@ -190,7 +190,6 @@ exports.get_recommendation = function (req, res) {
                 }
             }
         });
-
 }
 
 // Insert Recommendation
