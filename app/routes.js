@@ -24,6 +24,7 @@ module.exports = function (app) {
     app.get(prefix + "/genre/:movieId", database.get_genre);
 
     // Recomendation apis
+    app.get(prefix + '/recommendation', database.get_recommendation);
     app.post(prefix + '/recommendations', database.add_recommendations);
     app.post(prefix + '/likemovies', database.add_likeMovies);
     app.post(prefix + '/likegenre', database.add_likeGenre);

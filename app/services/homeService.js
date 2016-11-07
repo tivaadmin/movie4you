@@ -10,7 +10,11 @@ angular.module("homeService", [])
             return $http.get('/api/popular/');
         }
 
-        homeService.getRecommendations = function (movieID) {
+        homeService.getRecommendation = function () {
+            return $http.get('/api/recommendation/');
+        }
+
+        homeService.getRecommendationsAPI = function (movieID) {
             return $http.get("https://api.themoviedb.org/3/movie/" + movieID
                 + "/recommendations?api_key=81d7640dffed48055b1803be5b452893&language=en-US");
         }

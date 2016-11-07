@@ -170,6 +170,28 @@ exports.get_genre = function (req, res) {
         });
 }
 
+exports.get_recommendation = function (req, res) {
+
+    var query = connection.query({
+        sql: 'select * from (select m.* from Movie m join Movie_Genre mg on mg.movieId = m.movieId' + 
+        'join Like_Genre lg on lg.like_genreId = mg.genreId where lg.userId = 2) as movies' + 
+        'Join Recommendation r On movies.movieId = r.recMovieId Join Like_Movies lm On lm.like_movieId = r.movieId' + 
+        'Where lm.userId = 2', timeout: 40000 } , function (err, result) {
+
+            // console.log(req.body);
+            if (err) {
+                return res.status(400).send(err);
+            } else {
+                if (result.length > 0) {
+                    return res.status(200).send(result);
+                } else {
+                    return res.status(201).send('');
+                }
+            }
+        });
+
+}
+
 // Insert Recommendation
 exports.add_recommendations = function (req, res) {
 

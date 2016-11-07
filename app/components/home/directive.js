@@ -24,7 +24,7 @@ angular.module('app.directives.home', [])
 				}
 
 				$scope.movies = {};
-
+				// get Popular
 				Home.getPopular().success(function (result) {
 					$scope.movies = result;
 					makeImageUrl($scope.movies);
@@ -42,9 +42,16 @@ angular.module('app.directives.home', [])
 					$location.path('/detail/' + movie.movieId);
 				}
 
-				// Recomendation for like movies
+				$scope.rec = {};
+				// get recommendation for user
+				Home.getRecommendation().success(function (result) {
+					$scope.rec = result;
+					makeImageUrl($scope.rec);
+				});
+
+				// get and insert Recomendation API
 				$scope.automateRecommendation = function (i) {
-					Home.getRecommendations(i).success(function (result) {
+					Home.getRecommendationsAPI(i).success(function (result) {
 						console.log(result);
 						for (var n = 0; n < result.results.length; n++) {
 							$scope.movieRecommendation = {};

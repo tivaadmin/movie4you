@@ -57,12 +57,12 @@
 		</div>
 	</div>
 
-	<!--<div flex>
+	<div flex>
 		<div ng-cloak="" class="virtualRepeatdemoHorizontalUsage">
 			<md-content layout="column">
 				<div layout="row">
 					<div flex="20">
-						<h4> Popular Movies </h4>
+						<h4> Recommendation Movies </h4>
 					</div>
 					<div flex="70">
 
@@ -72,7 +72,7 @@
 					</div>
 				</div>
 				<md-virtual-repeat-container id="horizontal-container" md-orient-horizontal="">
-					<div md-virtual-repeat="movie in movies" class="repeated-item" flex="">
+					<div md-virtual-repeat="movie in rec" class="repeated-item" flex="">
 						<img src="{{movie.poster_path}}" class="img-responsive">
 					</div>
 				</md-virtual-repeat-container>
@@ -80,7 +80,7 @@
 		</div>
 	</div>
 
-	<div flex>
+	<!--<div flex>
 		<div ng-cloak="" class="virtualRepeatdemoHorizontalUsage">
 			<md-content layout="column">
 				<div layout="row">
