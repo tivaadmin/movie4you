@@ -15,7 +15,8 @@ module.exports = function (app) {
     // API Endpoints
     //  user apis
     app.post(prefix + "/user", database.add_user);
-
+    app.get(prefix + "/password/:userEmail", database.get_password);
+    
     // Popular apis
     app.get(prefix + "/popular", database.get_popular);
     app.get(prefix + "/allpopular", database.get_allpopular);
@@ -23,8 +24,8 @@ module.exports = function (app) {
     app.get(prefix + "/genre/:movieId", database.get_genre);
 
     // Recomendation apis
-    app.post(prefix + '/recommendations', database.add_recommendations);    
-    app.post(prefix + '/likemovies', database.add_likeMovies);    
-    app.post(prefix + '/likegenre', database.add_likeGenre);    
+    app.post(prefix + '/recommendations', database.add_recommendations);
+    app.post(prefix + '/likemovies', database.add_likeMovies);
+    app.post(prefix + '/likegenre', database.add_likeGenre);
 
 };

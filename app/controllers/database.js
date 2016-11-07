@@ -77,6 +77,24 @@ exports.add_user = function (req, res) {
     });
 }
 
+exports.get_password = function (req, res) {
+
+    var query = connection.query({sql: "select * from user where userEmail=?", timeout: 40000}, req.params.userEmail,
+         function (err, result) {
+
+            // console.log(req.body);
+            if (err) {
+                return res.status(400).send(err);
+            } else {
+                if (result.length > 0) {
+                    return res.status(200).send(result);
+                } else {
+                    return res.status(201).send('');
+                }
+            }
+        });
+}
+
 // select popular
 exports.get_popular = function (req, res) {
 
