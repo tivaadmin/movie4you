@@ -5,12 +5,29 @@ angular.module('app.directives.detail', [])
 		return {
 			restrict: 'E',
 			templateUrl: 'components/detail/template.html',
-			controller: ['$scope', '$http', '$location', '$routeParams', 'Detail', function ($scope, $http, $location, $routeParams, Detail) {
+			controller: ['$scope', '$http', '$location', '$routeParams', 'Detail', 'History', function ($scope, $http, $location, $routeParams, Detail, History) {
 
 				$scope.movie = {};
 				$scope.genre = {};
 
 				$scope.similar = {};
+
+				var w = History.watch('movie', $scope)
+					.addChangeHandler('myChangeHandler', function () {
+						console.log('movie changed to ' + $scope.movie);
+					})
+					.addUndoHandler('myUndoHandler', function () {
+						console.log('undid foo.  this message will self-destruct');
+						w.removeUndoHandler('myUndoHandler');
+					});
+
+				$scope.backClicked = function () {
+					History.undo('movie', $scope);
+				};
+
+				$scope.forwardClicked = function () {
+					History.redo('movie', $scope);
+				}
 
 				Detail.getSimilar($routeParams.movieId).success(function (result) {
 					$scope.similar = result.results;
@@ -48,7 +65,7 @@ angular.module('app.directives.detail', [])
 				$scope.home = function () {
 					$location.path('/home');
 				}
-				
+
 			}]
 		};
 	}]);
