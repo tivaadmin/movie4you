@@ -178,7 +178,6 @@ exports.get_recommendation = function (req, res) {
         ' join Like_Genre lg on lg.like_genreId = mg.genreId where lg.userId = 2) as movies' + 
         ' Join Recommendation r On movies.movieId = r.recMovieId Join Like_Movies lm On lm.like_movieId = r.movieId' + 
         ' Where lm.userId = 2', timeout: 40000 } , function (err, result) {
-
             // console.log(req.body);
             if (err) {
                 return res.status(400).send(err);
