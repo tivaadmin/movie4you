@@ -68,7 +68,7 @@ handleDisconnect();
 //     }
 // });
 
-//get user password
+// get user's password
 exports.get_password = function (req, res) {
 
     var query = connection.query({ sql: "select * from user where userEmail=?", timeout: 40000 }, req.params.userEmail,
@@ -86,6 +86,7 @@ exports.get_password = function (req, res) {
             }
         });
 }
+
 // insert user
 exports.add_user = function (req, res) {
     var query = connection.query({ sql: "Insert into user set ?", timeout: 40000 }, req.body, function (req, res) {
