@@ -1,76 +1,77 @@
-<div>
-	<md-toolbar class="md-primary">
-		<!--<md-button ng-click="toggleLeft()" class="md-raised">
-			Toggle Sidenav
-		</md-button>-->
-		<div class="md-toolbar-tools">
-			<h2 class="md-flex"><span class="glyphicon glyphicon-menu-left" ng-click="backClicked()"></span>M4U</h2>
-			<h2 class="md-flex"><span class="glyphicon glyphicon-menu-right" ng-click="forwardClicked()"></span></h2>
-		</div>
-	</md-toolbar>
-</div>
-
 <div layout="column" style="width: 100%;" ng-cloak="">
-
-	<!--<section layout="row" flex="">
-
-		<md-sidenav class="md-sidenav-left" md-component-id="left" md-disable-backdrop="" md-whiteframe="4">
-
-			<md-toolbar class="md-theme-indigo">
-				<h1 class="md-toolbar-tools">Name</h1>
-				<md-button ng-click="toggleLeft()">
-					Close this Sidenav
-				</md-button>
-			</md-toolbar>
-
-			<md-content layout-margin="">
-				<p>
-					This sidenav is not showing any backdrop, where users can click on it, to close the sidenav.
-				</p>
-
-			</md-content>
-
-		</md-sidenav>
-	</section>-->
-
 	<section class="panel">
 		<div class="panel-body">
-			<div class="col-sm-12 col-xs-12 col-md-6">
-				<img src="{{movie.poster_path}}" class="img-responsive" width="100%">
+			<md-card>
+				<md-card-header>
+					<md-card-header-text>
+						<span class="md-title">
+							<div layout="row">
+								<div flex="5">
+									<span class="glyphicon glyphicon-menu-left" ng-click="backClicked()"></span>
+								</div>
+								<div flex="20">
+									{{movie.title}}
+								</div>
+								<div flex hide-sm hide-xs>
+									<span class="glyphicon glyphicon-menu-right" ng-click="forwardClicked()"></span>
+								</div>
+							</div>
+						</span>
+					</md-card-header-text>
+				</md-card-header>
+			<img src="{{movie.poster_path}}" class="img-responsive">
+</md-card>
+
+<md-card-title>
+	<md-card-title-text>
+		<span class="md-headline">
+		<div layout="row">
+			<div flex="20">
+				<table border="0">
+					<tr><td ng-repeat="g in genre"><i><b>{{g.genreName}},</b></i></td></tr>
+				</table>
 			</div>
-			<div class="col-sm-12 col-xs-12 col-md-6">
-				<div class="row">
-					<h3>{{ movie.title }}</h3>
-					<table border="0">
-						<tr>
-							<td ng-repeat="g in genre"><i><b>{{g.genreName}},</b></i></td>
-						</tr>
-					</table>
-					<h4>{{ movie.vote_average }}<span class="glyphicon glyphicon-star"></span>{{ movie.release_date | date : "yyyy"}}<span class="glyphicon glyphicon-calendar"></span></h4>
-					<p>{{ movie.overview}}</p>
-				</div>
+			<div flex="65"></div>
+			<div flex hide-sm hide-xs>
+				<table border="0">
+					<tr>
+						<td><h4>{{ movie.release_date | date }}<span class="glyphicon glyphicon-calendar"></span></h4></td>
+					</tr>
+					<tr>
+						<td><h4>{{ movie.vote_average }}<span class="glyphicon glyphicon-star"></span></h4></td>
+					</tr>
+				</table>
 			</div>
 		</div>
-	</section>
+		</span>
+	</md-card-title-text>
+</md-card-title>
+<md-card-content>
+	<p style="text align:justify">
+		<h4>{{ movie.overview}}</h4>
+	</p>
+</md-card-content>
+</div>
+</section>
 
-	<div flex>
-		<div ng-cloak="" class="virtualRepeatdemoHorizontalUsage">
-			<md-content layout="column">
-				<div layout="row">
-					<div flex="20">
-						<h4> Similar movies </h4>
-					</div>
-					<div flex="70">
+<div flex>
+	<div ng-cloak="" class="virtualRepeatdemoHorizontalUsage">
+		<md-content layout="column">
+			<div layout="row">
+				<div flex="20">
+					<h4> Similar movies </h4>
+				</div>
+				<div flex="70">
 
+				</div>
+			</div>
+			<div flex>
+				<md-virtual-repeat-container id="horizontal-container" md-orient-horizontal="">
+					<div md-virtual-repeat="movie in similar" class="repeated-item" flex="">
+						<img src="{{movie.poster_path}}" ng-click="refreshDetail(movie)" class="img-responsive">
 					</div>
-				</div>
-				<div flex>
-					<md-virtual-repeat-container id="horizontal-container" md-orient-horizontal="">
-						<div md-virtual-repeat="movie in similar" class="repeated-item" flex="">
-							<img src="{{movie.poster_path}}" ng-click="refreshDetail(movie)" class="img-responsive">
-						</div>
-					</md-virtual-repeat-container>
-				</div>
-			</md-content>
-		</div>
+				</md-virtual-repeat-container>
+			</div>
+		</md-content>
 	</div>
+</div>
