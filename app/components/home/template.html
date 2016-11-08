@@ -1,11 +1,21 @@
 <div>
 	<md-toolbar class="md-primary">
-		<md-button ng-click="toggleLeft()" class="md-raised">
-			Toggle Sidenav
-		</md-button>
+
 		<div class="md-toolbar-tools">
-			<h2 class="md-flex">M4U</h2>
+			<div layout="row">
+				<div flex="60">
+					<section layout="row" layout-phone="column" layout-align="center center">
+						<md-button class="md-raised md-primary" ng-click="toggleLeft()">
+							<span class="glyphicon glyphicon-menu-hamburger"></span>
+						</md-button>
+					</section>
+				</div>
+				<div flex style="text-align:right" hide-sm hide-xs>
+					<h2 class="md-flex">M4U</h2>
+				</div>
+			</div>
 		</div>
+
 	</md-toolbar>
 </div>
 
@@ -16,10 +26,19 @@
 		<md-sidenav class="md-sidenav-left" md-component-id="left" md-disable-backdrop="" md-whiteframe="4">
 
 			<md-toolbar class="md-theme-indigo">
-				<h1 class="md-toolbar-tools">Name</h1>
-				<md-button ng-click="toggleLeft()">
-					Close this Sidenav
-				</md-button>
+				<div layout="row">
+					<div flex="20">
+						<h1 class="md-toolbar-tools">Name</h1>
+					</div>
+					<div flex hide-sm hide-xs>
+						<section layout="row" layout-phone="column" layout-align="center center">
+
+							<md-button ng-click="toggleLeft()">
+								<span class="glyphicon glyphicon-remove"></span>
+							</md-button>
+						</section>
+					</div>
+				</div>
 			</md-toolbar>
 
 			<md-content layout-margin="">
@@ -37,13 +56,13 @@
 			<md-content layout="column">
 				<div layout="row">
 					<div flex="20">
-						<h4> Popular movies </h4>
+						<h3> Popular movies </h3>
 					</div>
 					<div flex="70">
 
 					</div>
 					<div flex hide-sm hide-xs>
-						<h4><a href="#">See All</a></h4>
+						<h3><a href="#">See All</a></h3>
 					</div>
 				</div>
 				<div flex>
@@ -62,13 +81,13 @@
 			<md-content layout="column">
 				<div layout="row">
 					<div flex="20">
-						<h4> Recommendation Movies </h4>
+						<h3> Recommendation Movies </h3>
 					</div>
 					<div flex="70">
 
 					</div>
 					<div flex hide-sm hide-xs>
-						<h4><a href="#">See All</a></h4>
+						<h3><a href="#">See All</a></h3>
 					</div>
 				</div>
 				<md-virtual-repeat-container id="horizontal-container" md-orient-horizontal="">
@@ -106,7 +125,7 @@
 </div>-->
 
 
-<!--
+	<!--
 Copyright 2016 Google Inc. All Rights Reserved.
 Use of this source code is governed by an MIT-style license that can be foundin the LICENSE file at http://material.angularjs.org/HEAD/license.
 -->

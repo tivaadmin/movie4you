@@ -1,3 +1,6 @@
+body{
+  font-family: "Noteworthy-Light"
+}
 .virtualRepeatdemoHorizontalUsage #horizontal-container {
   height: 24vh;
   /*height: 100%;*/
@@ -23,6 +26,21 @@
 
 .virtualRepeatdemoHorizontalUsage md-virtual-repeat-container {
   border: solid 1px grey; }
+
+md-card {
+    position: relative;
+    text-align: left;
+  }
+
+  .md-card-title {
+    position: absolute;
+    top: 0px;
+    font-size: 1.5em;
+    width: 100%;
+    font-weight: bold;
+    color: #fff;
+    background-color: transparent;
+  }
 
 
 /*
