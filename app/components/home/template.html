@@ -92,7 +92,7 @@
 				</div>
 				<md-virtual-repeat-container id="horizontal-container" md-orient-horizontal="">
 					<div md-virtual-repeat="r in rec" class="repeated-item" flex="">
-						<img src="{{r.poster_path}}" class="img-responsive">
+						<img src="{{r.poster_path}}" ng-click="detail(r)" class="img-responsive">
 					</div>
 				</md-virtual-repeat-container>
 			</md-content>
